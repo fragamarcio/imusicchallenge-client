@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Produtos</h1>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td>{{product.name}}</td>
+                    <td>{{product.prize}}</td>
+                    <td>{{product.amount}}</td>
+                    <td class="text-center">
+                        <a routerLink="/edit/{{product._id}}" class="btn btn-primary active" role="button" routerLinkActive="active">Editar</a>
+                        &nbsp;
+                        <button class="btn btn-xs btn-danger" (click)="deleteProduct(product._id)">Remover</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
