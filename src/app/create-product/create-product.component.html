@@ -1,20 +1,35 @@
-<h3>Criar Produto</h3>
-<div [hidden]="!submitted">
-    <h4>Produto cadastrado com sucesso!!</h4>
+<h3 class="my-3 px-1">{{isNew ? 'Criar' : 'Editar'}} Produto</h3>
+<div [hidden]="!submited"  class="alert alert-success" role="alert">
+    Produto salvo com sucesso!
 </div>
-<div  [hidden]="submitted" style="width: 400px;">
-    <form (ngSubmit)="onSubmit()">
+<div style="width: 400px;">
+    <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
             <label for="name">Nome</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="product.name" name="name">
+            <input type="text" class="form-control" id="name" name="name"
+                required [(ngModel)]="product.name"  #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                class="text-danger">
+                <div *ngIf="name.errors.required">Nome é obrigatório</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="name">Preço</label>
-            <input type="text" class="form-control" id="prize" required [(ngModel)]="product.prize" name="prize">
+            <input type="number" class="form-control" id="prize" 
+                required [(ngModel)]="product.prize" name="prize"  #prize="ngModel">
+            <div *ngIf="prize.invalid && (prize.dirty || prize.touched)"
+                class="text-danger">
+                <div *ngIf="prize.errors.required">Preço é obrigatório</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="name">Quantidade</label>
-            <input type="text" class="form-control" id="amount" required [(ngModel)]="product.amount" name="amount">
+            <input type="number" class="form-control" id="amount" 
+                required [(ngModel)]="product.amount" name="amount"  #amount="ngModel">
+            <div *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+                class="text-danger">
+                <div *ngIf="amount.errors.required">Quantidade é obrigatório</div>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-success bnt-block">Enviar</button>
